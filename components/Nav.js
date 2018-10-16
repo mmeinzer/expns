@@ -1,4 +1,16 @@
 import Link from 'next/link'
+import styled from 'styled-components'
+
+const StyledNav = styled.nav`
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+  }
+`
 
 const links = [
   { href: '/', label: 'Home' },
@@ -9,7 +21,7 @@ const links = [
 })
 
 const Nav = () => (
-  <nav>
+  <StyledNav>
     <ul>
       {links.map(({ key, href, label }) => (
         <li key={key}>
@@ -19,7 +31,7 @@ const Nav = () => (
         </li>
       ))}
     </ul>
-  </nav>
+  </StyledNav>
 )
 
 export default Nav
