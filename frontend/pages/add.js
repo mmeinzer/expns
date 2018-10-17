@@ -1,12 +1,11 @@
-import CurrencyInput from 'react-currency-masked-input'
+import CurrencyInput from 'react-currency-input'
 
 const Add = props => (
   <>
     <h2>Add</h2>
     <CurrencyInput
-      name="amountInput"
-      placeholder="0.00"
-      onChange={(_, value) => console.log(value)}
+      value={props.value || "0.00"}
+      onChange={(_, value, float) => console.log(_, value, float)}
     />
   </>
 )
