@@ -1,0 +1,9 @@
+# import * from './generated/prisma.graphql'
+
+type Mutation {
+  createExpense(amount: Int, category: String, desc: String): Expense!
+}
+
+type Query {
+  expenses: [Expense]!
+}

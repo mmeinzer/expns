@@ -1,0 +1,15 @@
+type User {
+  id: ID! @unique
+  name: String!
+  email: String!
+}
+
+type Expense {
+  id: ID! @unique
+  amount: Int!
+  category: String
+  desc: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  # user: User
+}
