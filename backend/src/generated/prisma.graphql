@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/matthew-meinzer-a72487/expns/dev
-# timestamp: Thu Oct 18 2018 17:13:22 GMT-0500 (CDT)
+# timestamp: Fri Oct 19 2018 14:32:11 GMT-0500 (CDT)
 
 type AggregateExpense {
   count: Int!
@@ -39,6 +39,11 @@ input ExpenseCreateInput {
   amount: Int!
   category: String
   desc: String
+}
+
+input ExpenseCreateManyInput {
+  create: [ExpenseCreateInput!]
+  connect: [ExpenseWhereUniqueInput!]
 }
 
 """An edge in a connection."""
@@ -113,10 +118,36 @@ input ExpenseSubscriptionWhereInput {
   node: ExpenseWhereInput
 }
 
+input ExpenseUpdateDataInput {
+  amount: Int
+  category: String
+  desc: String
+}
+
 input ExpenseUpdateInput {
   amount: Int
   category: String
   desc: String
+}
+
+input ExpenseUpdateManyInput {
+  create: [ExpenseCreateInput!]
+  connect: [ExpenseWhereUniqueInput!]
+  disconnect: [ExpenseWhereUniqueInput!]
+  delete: [ExpenseWhereUniqueInput!]
+  update: [ExpenseUpdateWithWhereUniqueNestedInput!]
+  upsert: [ExpenseUpsertWithWhereUniqueNestedInput!]
+}
+
+input ExpenseUpdateWithWhereUniqueNestedInput {
+  where: ExpenseWhereUniqueInput!
+  data: ExpenseUpdateDataInput!
+}
+
+input ExpenseUpsertWithWhereUniqueNestedInput {
+  where: ExpenseWhereUniqueInput!
+  update: ExpenseUpdateDataInput!
+  create: ExpenseCreateInput!
 }
 
 input ExpenseWhereInput {
@@ -392,6 +423,9 @@ type User implements Node {
   id: ID!
   name: String!
   email: String!
+  expenses(where: ExpenseWhereInput, orderBy: ExpenseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Expense!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 """A connection to a list of items."""
@@ -407,6 +441,7 @@ type UserConnection {
 input UserCreateInput {
   name: String!
   email: String!
+  expenses: ExpenseCreateManyInput
 }
 
 """An edge in a connection."""
@@ -425,16 +460,18 @@ enum UserOrderByInput {
   name_DESC
   email_ASC
   email_DESC
-  updatedAt_ASC
-  updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 type UserPreviousValues {
   id: ID!
   name: String!
   email: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type UserSubscriptionPayload {
@@ -479,6 +516,7 @@ input UserSubscriptionWhereInput {
 input UserUpdateInput {
   name: String
   email: String
+  expenses: ExpenseUpdateManyInput
 }
 
 input UserWhereInput {
@@ -610,8 +648,56 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   email_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+  expenses_every: ExpenseWhereInput
+  expenses_some: ExpenseWhereInput
+  expenses_none: ExpenseWhereInput
 }
 
 input UserWhereUniqueInput {
   id: ID
+  email: String
 }

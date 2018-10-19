@@ -1,7 +1,10 @@
 type User {
   id: ID! @unique
   name: String!
-  email: String!
+  email: String! @unique
+  expenses: [Expense!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type Expense {
