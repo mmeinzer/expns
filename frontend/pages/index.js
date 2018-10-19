@@ -1,5 +1,9 @@
+import Expenses from '../components/Expenses'
+
 const Home = () => (
-  <h2>Home</h2>
+  <div>
+    <Expenses />
+  </div>
 )
 
 export default Home

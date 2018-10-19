@@ -13,7 +13,7 @@ const StyledNav = styled.nav`
 `
 
 const links = [
-  { href: '/', label: 'Home' },
+  { href: '/expenses', label: 'Expenses' },
   { href: '/add', label: 'Add Expense' }
 ].map(link => {
   link.key = `nav-link-${link.href}-${link.label}`
