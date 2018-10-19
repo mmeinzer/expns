@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/matthew-meinzer-a72487/expns/dev
-# timestamp: Fri Oct 19 2018 14:32:11 GMT-0500 (CDT)
+# timestamp: Fri Oct 19 2018 15:03:26 GMT-0500 (CDT)
 
 type AggregateExpense {
   count: Int!
@@ -23,6 +23,7 @@ type Expense implements Node {
   desc: String
   createdAt: DateTime!
   updatedAt: DateTime!
+  user: User
 }
 
 """A connection to a list of items."""
@@ -39,11 +40,18 @@ input ExpenseCreateInput {
   amount: Int!
   category: String
   desc: String
+  user: UserCreateOneWithoutExpensesInput
 }
 
-input ExpenseCreateManyInput {
-  create: [ExpenseCreateInput!]
+input ExpenseCreateManyWithoutUserInput {
+  create: [ExpenseCreateWithoutUserInput!]
   connect: [ExpenseWhereUniqueInput!]
+}
+
+input ExpenseCreateWithoutUserInput {
+  amount: Int!
+  category: String
+  desc: String
 }
 
 """An edge in a connection."""
@@ -118,36 +126,37 @@ input ExpenseSubscriptionWhereInput {
   node: ExpenseWhereInput
 }
 
-input ExpenseUpdateDataInput {
-  amount: Int
-  category: String
-  desc: String
-}
-
 input ExpenseUpdateInput {
   amount: Int
   category: String
   desc: String
+  user: UserUpdateOneWithoutExpensesInput
 }
 
-input ExpenseUpdateManyInput {
-  create: [ExpenseCreateInput!]
+input ExpenseUpdateManyWithoutUserInput {
+  create: [ExpenseCreateWithoutUserInput!]
   connect: [ExpenseWhereUniqueInput!]
   disconnect: [ExpenseWhereUniqueInput!]
   delete: [ExpenseWhereUniqueInput!]
-  update: [ExpenseUpdateWithWhereUniqueNestedInput!]
-  upsert: [ExpenseUpsertWithWhereUniqueNestedInput!]
+  update: [ExpenseUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [ExpenseUpsertWithWhereUniqueWithoutUserInput!]
 }
 
-input ExpenseUpdateWithWhereUniqueNestedInput {
-  where: ExpenseWhereUniqueInput!
-  data: ExpenseUpdateDataInput!
+input ExpenseUpdateWithoutUserDataInput {
+  amount: Int
+  category: String
+  desc: String
 }
 
-input ExpenseUpsertWithWhereUniqueNestedInput {
+input ExpenseUpdateWithWhereUniqueWithoutUserInput {
   where: ExpenseWhereUniqueInput!
-  update: ExpenseUpdateDataInput!
-  create: ExpenseCreateInput!
+  data: ExpenseUpdateWithoutUserDataInput!
+}
+
+input ExpenseUpsertWithWhereUniqueWithoutUserInput {
+  where: ExpenseWhereUniqueInput!
+  update: ExpenseUpdateWithoutUserDataInput!
+  create: ExpenseCreateWithoutUserInput!
 }
 
 input ExpenseWhereInput {
@@ -345,6 +354,7 @@ input ExpenseWhereInput {
 
   """All values greater than or equal the given value."""
   updatedAt_gte: DateTime
+  user: UserWhereInput
 }
 
 input ExpenseWhereUniqueInput {
@@ -441,7 +451,17 @@ type UserConnection {
 input UserCreateInput {
   name: String!
   email: String!
-  expenses: ExpenseCreateManyInput
+  expenses: ExpenseCreateManyWithoutUserInput
+}
+
+input UserCreateOneWithoutExpensesInput {
+  create: UserCreateWithoutExpensesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutExpensesInput {
+  name: String!
+  email: String!
 }
 
 """An edge in a connection."""
@@ -516,7 +536,26 @@ input UserSubscriptionWhereInput {
 input UserUpdateInput {
   name: String
   email: String
-  expenses: ExpenseUpdateManyInput
+  expenses: ExpenseUpdateManyWithoutUserInput
+}
+
+input UserUpdateOneWithoutExpensesInput {
+  create: UserCreateWithoutExpensesInput
+  connect: UserWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: UserUpdateWithoutExpensesDataInput
+  upsert: UserUpsertWithoutExpensesInput
+}
+
+input UserUpdateWithoutExpensesDataInput {
+  name: String
+  email: String
+}
+
+input UserUpsertWithoutExpensesInput {
+  update: UserUpdateWithoutExpensesDataInput!
+  create: UserCreateWithoutExpensesInput!
 }
 
 input UserWhereInput {

@@ -14,5 +14,5 @@ type Expense {
   desc: String
   createdAt: DateTime!
   updatedAt: DateTime!
-  # user: User
+  user: User
 }
