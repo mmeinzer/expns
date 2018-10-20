@@ -6,7 +6,7 @@ const theme = {
   blue: '#314CB6',
   lightBlue: '#4392F1',
   maxWidth: '860px',
-  bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
+  boxShadow: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
 };
 
 export default theme;
