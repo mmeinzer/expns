@@ -10,6 +10,9 @@ const StyledNav = styled.nav`
     padding: 0;
     display: flex;
   }
+  li {
+    padding-right: 2rem;
+  }
 `
 
 const links = [

@@ -20,6 +20,14 @@ const StyledExpenses = styled.div`
   background: ${props => props.theme.lightBlue};
   box-shadow: ${props => props.theme.boxShadow};
   color: ${props => props.theme.offWhite};
+  border: 2px solid ${props => props.theme.black};
+  h2 {
+    padding-left: 2rem;
+  }
+  div:nth-child(even) {
+    background: ${props => props.theme.lightGrey};
+    color: ${props => props.theme.black}
+  }
 `;
 
 export default class Expenses extends Component {

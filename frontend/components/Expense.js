@@ -11,7 +11,9 @@ const ExpenseDetails = styled.div`
 const Expense = props => {
   const { expense } = props;
   return (
-    <ExpenseDetails>{formatCents(expense.amount)}</ExpenseDetails>
+    <ExpenseDetails>
+      {`${expense.desc.replace(/^\w/, c => c.toUpperCase())} ${formatCents(expense.amount)}`}
+    </ExpenseDetails>
   );
 }
 
