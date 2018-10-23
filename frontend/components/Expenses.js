@@ -11,40 +11,51 @@ const ALL_EXPENSES_QUERY = gql`
       amount
       category
       desc
+      createdAt
     }
   }
 `;
 
-const StyledExpenses = styled.div`
+const ExpensesSection = styled.div`
   display: grid;
-  background: ${props => props.theme.lightBlue};
+  grid-gap: 2rem;
+  grid-template-columns: 1fr;
+`;
+
+const StyledExpenses = styled.table`
+  border-collapse: collapse;
+  td {
+    border: 1px solid black;
+  }
+`;
+
+const BoxShadowDiv = styled.div`
   box-shadow: ${props => props.theme.boxShadow};
-  color: ${props => props.theme.offWhite};
-  border: 2px solid ${props => props.theme.black};
-  h2 {
-    padding-left: 2rem;
-  }
-  div:nth-child(even) {
-    background: ${props => props.theme.lightGrey};
-    color: ${props => props.theme.black}
-  }
 `;
 
 export default class Expenses extends Component {
   render() {
     return (
-      <StyledExpenses>
-        <h2>Expenses</h2>
-        <Query query={ALL_EXPENSES_QUERY}>
-          {({ data, error, loading }) => {
-            if (loading) return <p>Loading...</p>
-            if (error) return <p>Error: {error.message}</p>
-            return (
-              data.expenses.map(expense => <Expense expense={expense}/>)
-            )
-          }}
-        </Query>
-      </StyledExpenses>
+      <ExpensesSection>
+        <h2>Transactions</h2>
+        <StyledExpenses>
+          <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Amount</th>
+          </tr>
+          <Query query={ALL_EXPENSES_QUERY}>
+            {({ data, error, loading }) => {
+              if (loading) return <p>Loading...</p>
+              if (error) return <p>Error: {error.message}</p>
+              return (
+                data.expenses.map(expense => <Expense expense={expense}/>)
+                )
+              }}
+          </Query>
+        </StyledExpenses>
+      </ExpensesSection>
     )
   }
 }

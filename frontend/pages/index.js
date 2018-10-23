@@ -1,9 +1,7 @@
 import Expenses from '../components/Expenses'
 
 const Home = () => (
-  <div>
-    <Expenses />
-  </div>
+  <Expenses />
 )
 
 export default Home
