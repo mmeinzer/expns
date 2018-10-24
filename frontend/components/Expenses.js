@@ -33,29 +33,36 @@ const BoxShadowDiv = styled.div`
   box-shadow: ${props => props.theme.boxShadow};
 `;
 
-export default class Expenses extends Component {
+class Expenses extends Component {
   render() {
     return (
       <ExpensesSection>
         <h2>Transactions</h2>
         <StyledExpenses>
-          <tr>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Category</th>
-            <th>Amount</th>
-          </tr>
-          <Query query={ALL_EXPENSES_QUERY}>
-            {({ data, error, loading }) => {
-              if (loading) return <p>Loading...</p>
-              if (error) return <p>Error: {error.message}</p>
-              return (
-                data.expenses.map(expense => <Expense expense={expense}/>)
-                )
-              }}
-          </Query>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Category</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <Query query={ALL_EXPENSES_QUERY}>
+              {({ data, error, loading }) => {
+                if (loading) return <p>Loading...</p>
+                if (error) return <p>Error: {error.message}</p>
+                return (
+                  data.expenses.map(expense => <Expense expense={expense} key={expense.id}/>)
+                  )
+                }}
+            </Query>
+          </tbody>
         </StyledExpenses>
       </ExpensesSection>
     )
   }
 }
+
+export default Expenses;
+export { ALL_EXPENSES_QUERY };
