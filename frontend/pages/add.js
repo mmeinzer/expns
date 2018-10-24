@@ -1,12 +1,8 @@
-import CurrencyInput from 'react-currency-input'
+import CreateExpense from '../components/CreateExpense';
 
 const Add = props => (
   <>
-    <h2>Add</h2>
-    <CurrencyInput
-      value={props.value || "0.00"}
-      onChange={(_, value, float) => console.log(_, value, float)}
-    />
+    <CreateExpense></CreateExpense>
   </>
 )
 
