@@ -29,10 +29,6 @@ const StyledExpenses = styled.table`
   }
 `;
 
-const BoxShadowDiv = styled.div`
-  box-shadow: ${props => props.theme.boxShadow};
-`;
-
 class Expenses extends Component {
   render() {
     return (
