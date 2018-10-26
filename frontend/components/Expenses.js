@@ -41,6 +41,7 @@ class Expenses extends Component {
               <th>Description</th>
               <th>Category</th>
               <th>Amount</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>

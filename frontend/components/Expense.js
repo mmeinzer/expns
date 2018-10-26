@@ -1,5 +1,6 @@
-import formatCents from '../lib/formatMoney';
 import styled from 'styled-components';
+import formatCents from '../lib/formatMoney';
+import DeleteExpense from './DeleteExpense';
 
 const ExpenseDetails = styled.tr`
 `;
@@ -20,6 +21,7 @@ const Expense = props => {
       <td>{expense.desc.replace(/^\w/, c => c.toUpperCase())}</td>
       <td>{expense.category}</td>
       <RightData>{formatCents(expense.amount)}</RightData>
+      <td><DeleteExpense id={expense.id}>X</DeleteExpense></td>
     </ExpenseDetails>
   );
 }

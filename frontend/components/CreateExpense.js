@@ -3,6 +3,7 @@ import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import CurrencyInput from 'react-currency-input'
 import ErrorMessage from './ErrorMessage';
+import { ALL_EXPENSES_QUERY } from './Expenses';
 
 const CREATE_EXPENSE_MUTATION = gql`
   mutation CREATE_EXPENSE_MUTATION(
@@ -20,18 +21,20 @@ const CREATE_EXPENSE_MUTATION = gql`
   }
 `;
 
+const initialState = {
+  description: '',
+  displayAmount: '',
+  category: '',
+  amount: 0,
+}
+
 class CreateExpense extends Component {
-  state = {
-    description: '',
-    displayAmount: '',
-    category: '',
-    amount: 0,
-  }
+  state = initialState
   handleChange = (e, amountString, amountFloat) => {
     if (amountString) {
       this.setState({
         displayAmount: e.target.value,
-        amount: amountFloat * 100,
+        amount: Math.floor(amountFloat * 100),
       })
     }
     else {
@@ -49,13 +52,17 @@ class CreateExpense extends Component {
           <form
             onSubmit={async (e) => {
               e.preventDefault();
-              const res = await createExpense({
+              await createExpense({
                 variables: {
                   amount: this.state.amount,
                   category: this.state.category,
                   desc: this.state.description,
-                }
+                },
+                refetchQueries: [{
+                  query: ALL_EXPENSES_QUERY
+                }]
               });
+              this.setState(initialState)
             }}
           >
             <ErrorMessage error={error} />
