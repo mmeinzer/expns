@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/matthew-meinzer-a72487/expns/dev
-# timestamp: Fri Oct 19 2018 15:03:26 GMT-0500 (CDT)
+# timestamp: Fri Oct 26 2018 06:13:11 GMT-0500 (CDT)
 
 type AggregateExpense {
   count: Int!
@@ -131,6 +131,12 @@ input ExpenseUpdateInput {
   category: String
   desc: String
   user: UserUpdateOneWithoutExpensesInput
+}
+
+input ExpenseUpdateManyInput {
+  amount: Int
+  category: String
+  desc: String
 }
 
 input ExpenseUpdateManyWithoutUserInput {
@@ -376,8 +382,8 @@ type Mutation {
   deleteExpense(where: ExpenseWhereUniqueInput!): Expense
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertExpense(where: ExpenseWhereUniqueInput!, create: ExpenseCreateInput!, update: ExpenseUpdateInput!): Expense!
-  updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
-  updateManyExpenses(data: ExpenseUpdateInput!, where: ExpenseWhereInput): BatchPayload!
+  updateManyUsers(data: UserUpdateManyInput!, where: UserWhereInput): BatchPayload!
+  updateManyExpenses(data: ExpenseUpdateManyInput!, where: ExpenseWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyExpenses(where: ExpenseWhereInput): BatchPayload!
 }
@@ -537,6 +543,11 @@ input UserUpdateInput {
   name: String
   email: String
   expenses: ExpenseUpdateManyWithoutUserInput
+}
+
+input UserUpdateManyInput {
+  name: String
+  email: String
 }
 
 input UserUpdateOneWithoutExpensesInput {
