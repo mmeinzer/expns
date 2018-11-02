@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from "next/head";
 
 const Meta = () => (
   <Head>
@@ -6,9 +6,12 @@ const Meta = () => (
     <meta charSet="utf-8" />
     <link rel="mask-icon" href="/static/favicon-mask.svg" color="#49B882" />
     <link rel="icon" href="/static/favicon.ico" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"></link>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+    />
     <title>Expns</title>
   </Head>
-)
+);
 
-export default Meta
+export default Meta;

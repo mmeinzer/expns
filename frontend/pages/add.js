@@ -1,9 +1,9 @@
-import CreateExpense from '../components/CreateExpense';
+import CreateExpense from "../components/CreateExpense";
 
 const Add = props => (
   <>
-    <CreateExpense></CreateExpense>
+    <CreateExpense />
   </>
-)
+);
 
-export default Add
+export default Add;

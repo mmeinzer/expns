@@ -1,12 +1,15 @@
 const Mutations = {
   async createExpense(parent, args, ctx, info) {
-    const expense = await ctx.db.mutation.createExpense({
-      data: {
-        ...args
-      }
-    }, info)
+    const expense = await ctx.db.mutation.createExpense(
+      {
+        data: {
+          ...args
+        }
+      },
+      info
+    );
 
-    return expense
+    return expense;
   },
   async deleteExpense(parent, args, ctx, info) {
     const where = { id: args.id };

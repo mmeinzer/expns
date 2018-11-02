@@ -1,7 +1,7 @@
-import { Component } from 'react';
-import { Mutation } from 'react-apollo';
-import gql from 'graphql-tag';
-import { ALL_EXPENSES_QUERY } from './Expenses';
+import { Component } from "react";
+import { Mutation } from "react-apollo";
+import gql from "graphql-tag";
+import { ALL_EXPENSES_QUERY } from "./Expenses";
 
 const DELETE_EXPENSE_MUTATION = gql`
   mutation DELETE_EXPENSE_MUTATION($id: ID!) {
@@ -14,21 +14,20 @@ const DELETE_EXPENSE_MUTATION = gql`
 class DeleteExpense extends Component {
   render() {
     return (
-      <Mutation
-        mutation={DELETE_EXPENSE_MUTATION}
-        update={this.update}
-      >
+      <Mutation mutation={DELETE_EXPENSE_MUTATION} update={this.update}>
         {(deleteExpense, { error }) => (
           <button
-            onClick={(e) => {
+            onClick={e => {
               deleteExpense({
                 variables: {
-                  id: this.props.id,
+                  id: this.props.id
                 },
-                refetchQueries: [{
-                  query: ALL_EXPENSES_QUERY,
-                }]
-              })
+                refetchQueries: [
+                  {
+                    query: ALL_EXPENSES_QUERY
+                  }
+                ]
+              });
             }}
           >
             {this.props.children}

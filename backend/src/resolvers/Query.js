@@ -1,8 +1,8 @@
 const Query = {
   expenses(parent, args, ctx, info) {
-    const expenses = ctx.db.query.expenses({}, info)
+    const expenses = ctx.db.query.expenses({}, info);
 
-    return expenses
+    return expenses;
   }
 };
 

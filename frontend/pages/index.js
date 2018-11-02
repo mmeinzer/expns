@@ -1,7 +1,5 @@
-import Expenses from '../components/Expenses'
+import Expenses from "../components/Expenses";
 
-const Home = () => (
-  <Expenses />
-)
+const Home = () => <Expenses />;
 
-export default Home
+export default Home;
