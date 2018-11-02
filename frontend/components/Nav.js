@@ -1,30 +1,15 @@
-import Link from 'next/link'
-import styled from 'styled-components'
-
-const StyledNav = styled.nav`
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: center;
-  ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-  }
-  li {
-    padding-right: 2rem;
-  }
-`
+import Link from "next/link";
 
 const links = [
-  { href: '/expenses', label: 'Expenses' },
-  { href: '/add', label: 'Add Expense' }
+  { href: "/expenses", label: "Expenses" },
+  { href: "/add", label: "Add Expense" }
 ].map(link => {
-  link.key = `nav-link-${link.href}-${link.label}`
-  return link
-})
+  link.key = `nav-link-${link.href}-${link.label}`;
+  return link;
+});
 
 const Nav = () => (
-  <StyledNav>
+  <nav>
     <ul>
       {links.map(({ key, href, label }) => (
         <li key={key}>
@@ -34,7 +19,7 @@ const Nav = () => (
         </li>
       ))}
     </ul>
-  </StyledNav>
-)
+  </nav>
+);
 
-export default Nav
+export default Nav;

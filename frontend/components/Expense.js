@@ -1,29 +1,19 @@
-import styled from 'styled-components';
-import formatCents from '../lib/formatMoney';
-import DeleteExpense from './DeleteExpense';
-
-const ExpenseDetails = styled.tr`
-`;
-
-const RightData = styled.td`
-  text-align: right;
-`;
-
-const CenterData = styled.td`
-  text-align: center;
-`;
+import formatCents from "../lib/formatMoney";
+import DeleteExpense from "./DeleteExpense";
 
 const Expense = props => {
   const { expense } = props;
   return (
-    <ExpenseDetails>
-      <CenterData>{new Date(expense.createdAt).toLocaleDateString("en-US")}</CenterData>
+    <tr>
+      <td>{new Date(expense.createdAt).toLocaleDateString("en-US")}</td>
       <td>{expense.desc.replace(/^\w/, c => c.toUpperCase())}</td>
       <td>{expense.category}</td>
-      <RightData>{formatCents(expense.amount)}</RightData>
-      <td><DeleteExpense id={expense.id}>X</DeleteExpense></td>
-    </ExpenseDetails>
+      <td>{formatCents(expense.amount)}</td>
+      <td>
+        <DeleteExpense id={expense.id}>X</DeleteExpense>
+      </td>
+    </tr>
   );
-}
+};
 
-export default Expense
+export default Expense;

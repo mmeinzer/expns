@@ -1,8 +1,7 @@
-import { Component } from 'react';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
-import styled from 'styled-components';
-import Expense from './Expense';
+import { Component } from "react";
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
+import Expense from "./Expense";
 
 const ALL_EXPENSES_QUERY = gql`
   query ALL_EXPENSES_QUERY {
@@ -16,25 +15,12 @@ const ALL_EXPENSES_QUERY = gql`
   }
 `;
 
-const ExpensesSection = styled.div`
-  display: grid;
-  grid-gap: 2rem;
-  grid-template-columns: 1fr;
-`;
-
-const StyledExpenses = styled.table`
-  border-collapse: collapse;
-  td {
-    border: 1px solid black;
-  }
-`;
-
 class Expenses extends Component {
   render() {
     return (
-      <ExpensesSection>
+      <div>
         <h2>Transactions</h2>
-        <StyledExpenses>
+        <table>
           <thead>
             <tr>
               <th>Date</th>
@@ -47,17 +33,17 @@ class Expenses extends Component {
           <tbody>
             <Query query={ALL_EXPENSES_QUERY}>
               {({ data, error, loading }) => {
-                if (loading) return <p>Loading...</p>
-                if (error) return <p>Error: {error.message}</p>
-                return (
-                  data.expenses.map(expense => <Expense expense={expense} key={expense.id}/>)
-                  )
-                }}
+                if (loading) return <p>Loading...</p>;
+                if (error) return <p>Error: {error.message}</p>;
+                return data.expenses.map(expense => (
+                  <Expense expense={expense} key={expense.id} />
+                ));
+              }}
             </Query>
           </tbody>
-        </StyledExpenses>
-      </ExpensesSection>
-    )
+        </table>
+      </div>
+    );
   }
 }
 
