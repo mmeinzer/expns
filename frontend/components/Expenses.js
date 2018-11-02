@@ -15,12 +15,17 @@ const ALL_EXPENSES_QUERY = gql`
   }
 `;
 
+const classes = {
+  table: "table-auto",
+  container: "w-full"
+};
+
 class Expenses extends Component {
   render() {
     return (
-      <div>
+      <div className={classes.container}>
         <h2>Transactions</h2>
-        <table>
+        <table className={classes.table}>
           <thead>
             <tr>
               <th>Date</th>
