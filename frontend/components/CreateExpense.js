@@ -30,7 +30,8 @@ const classes = {
   label: "block text-grey-darker text-sm mb-2",
   input:
     "shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight mb-4",
-  submit: "bg-purple py-2 px-3 text-grey-lightest rounded mt-3"
+  submit:
+    "bg-purple py-2 px-3 text-grey-lightest rounded mt-3 hover:bg-purple-dark"
 };
 
 class CreateExpense extends Component {
