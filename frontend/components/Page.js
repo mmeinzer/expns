@@ -2,10 +2,10 @@ import Meta from "./Meta";
 import Header from "./Header";
 
 const Page = props => (
-  <div>
+  <div className="h-full container mx-auto px-5 bg-grey-lightest">
     <Meta />
     <Header />
-    <div>{props.children}</div>
+    <div className="flex justify-center">{props.children}</div>
   </div>
 );
 

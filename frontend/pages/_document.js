@@ -3,14 +3,15 @@ import Document, { Head, Main, NextScript } from "next/document";
 export default class MyDocument extends Document {
   render() {
     return (
-      <html>
+      <html className="h-full">
         <Head>
           <link
             href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css"
             rel="stylesheet"
           />
+          <style>{"#__next { height: 100vh; }"}</style>
         </Head>
-        <body>
+        <body className="h-full">
           <Main />
           <NextScript />
         </body>

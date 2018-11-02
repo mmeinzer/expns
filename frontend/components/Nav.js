@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 const links = [
-  { href: "/expenses", label: "Expenses" },
-  { href: "/add", label: "Add Expense" }
+  { href: "/expenses", label: "List" },
+  { href: "/add", label: "Add" }
 ].map(link => {
   link.key = `nav-link-${link.href}-${link.label}`;
   return link;
@@ -10,11 +10,13 @@ const links = [
 
 const Nav = () => (
   <nav>
-    <ul>
+    <ul className="flex">
       {links.map(({ key, href, label }) => (
-        <li key={key}>
+        <li className="list-reset pl-4" key={key}>
           <Link href={href}>
-            <a>{label}</a>
+            <a className="no-underline hover:bg-purple-dark text-black text-lg bg-purple py-1 px-3 text-white rounded">
+              {label}
+            </a>
           </Link>
         </li>
       ))}
