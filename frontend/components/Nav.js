@@ -1,40 +1,27 @@
-import Link from 'next/link'
-import styled from 'styled-components'
-
-const StyledNav = styled.nav`
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: center;
-  ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-  }
-  li {
-    padding-right: 2rem;
-  }
-`
+import Link from "next/link";
 
 const links = [
-  { href: '/expenses', label: 'Expenses' },
-  { href: '/add', label: 'Add Expense' }
+  { href: "/expenses", label: "List" },
+  { href: "/add", label: "Add" }
 ].map(link => {
-  link.key = `nav-link-${link.href}-${link.label}`
-  return link
-})
+  link.key = `nav-link-${link.href}-${link.label}`;
+  return link;
+});
 
 const Nav = () => (
-  <StyledNav>
-    <ul>
+  <nav>
+    <ul className="flex">
       {links.map(({ key, href, label }) => (
-        <li key={key}>
+        <li className="list-reset pl-4" key={key}>
           <Link href={href}>
-            <a>{label}</a>
+            <a className="no-underline hover:bg-purple-dark text-black text-lg bg-purple py-1 px-3 text-white rounded">
+              {label}
+            </a>
           </Link>
         </li>
       ))}
     </ul>
-  </StyledNav>
-)
+  </nav>
+);
 
-export default Nav
+export default Nav;

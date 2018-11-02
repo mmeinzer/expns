@@ -1,25 +1,21 @@
-import Document, { Head, Main, NextScript } from 'next/document'
-import { ServerStyleSheet } from 'styled-components'
+import Document, { Head, Main, NextScript } from "next/document";
 
 export default class MyDocument extends Document {
-  static getInitialProps ({ renderPage }) {
-    const sheet = new ServerStyleSheet()
-    const page = renderPage(App => props => sheet.collectStyles(<App {...props} />))
-    const styleTags = sheet.getStyleElement()
-    return { ...page, styleTags }
-  }
-
-  render () {
+  render() {
     return (
-      <html>
+      <html className="h-full">
         <Head>
-          {this.props.styleTags}
+          <link
+            href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css"
+            rel="stylesheet"
+          />
+          <style>{"#__next { height: 100vh; }"}</style>
         </Head>
-        <body>
+        <body className="h-full bg-grey-lightest">
           <Main />
           <NextScript />
         </body>
       </html>
-    )
+    );
   }
 }
