@@ -15,27 +15,32 @@ const ALL_EXPENSES_QUERY = gql`
   }
 `;
 
-const classes = {
-  table: "table-auto",
-  container: "w-full"
+export const classes = {
+  container: "w-full lg:max-w-xl",
+  header: "text-indigo-darker mb-6",
+  table: "table-fixed w-full whitespace-no-wrap text-indigo-darkest",
+  thead: "text-left",
+  tr: "hover:bg-purple hover:text-white",
+  td: "h-6",
+  th: "h-6",
+  tbody: "mt-3"
 };
 
 class Expenses extends Component {
   render() {
     return (
       <div className={classes.container}>
-        <h2>Transactions</h2>
+        <h2 className={classes.header}>Transactions</h2>
         <table className={classes.table}>
-          <thead>
+          <thead className={classes.thead}>
             <tr>
-              <th>Date</th>
-              <th>Description</th>
-              <th>Category</th>
-              <th>Amount</th>
-              <th>Delete</th>
+              <th className={classes.th + " w-12"}>Date</th>
+              <th className={classes.th + " w-24"}>Desc</th>
+              <th className={classes.th + " w-24"}>Category</th>
+              <th className={classes.th + " w-24"}>Amount</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className={classes.tbody}>
             <Query query={ALL_EXPENSES_QUERY}>
               {({ data, error, loading }) => {
                 if (loading) return <p>Loading...</p>;
